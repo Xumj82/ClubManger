@@ -33,7 +33,7 @@ public class Member extends Person{
 	
 	public String toString()
 	{
-		String name = super.toString() + this.memshipNum;
+		String name = super.toString() + " "+this.memshipNum;
 		return name;
 	}
 }

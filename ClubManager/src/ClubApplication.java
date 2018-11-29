@@ -1,56 +1,75 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Scanner;
+
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
 
 import javafx.util.converter.LocalDateStringConverter;
 
 public class ClubApplication {
 
-	public static void main(String[] args) throws BadBookingException {
+	public static void main(String[] args) throws BadBookingException, FileNotFoundException {
 		// TODO Auto-generated method stub
 		/*
 		 * System.out.println("This is ClubApp..."); Member P1 = new
 		 * Member("Zhang","Wei","Tom",123); Person P2 = new Member("Zhang","Wei",123);
 		 * System.out.println("Name of 1st person:"); P1.Show();
-		 * System.out.println("Name of 2nd person:"); P2.Show();
-		 * 6666666666
-		 * 666
+		 * System.out.println("Name of 2nd person:"); P2.Show(); 6666666666 666
 		 */
-		Club c = new Club();
-		Member mem = c.addMember("Zhang", "Wei", "Tom");
-		Member mem0 = c.addMember("Li", "Jun", "Tony");
-		Member mem1 = c.addMember("Li", "Jun", "Tony");
-		Member mem2 = c.addMember("Li", "Jun", "Tony");
-		Member mem3 = c.addMember("Li", "Jun", "Tony");
-		Member mem4 = c.addMember("Li", "Jun", "Tony");
-		c.showMems();
-		c.removeMember();
-		c.removeMember();
-		c.showMems();
-		
-		Facility fa1 = c.addFacility("fa1", null);
-		Facility fa2 = c.addFacility("fa2", null);
-		Facility fa3 = c.addFacility("fa3", null);
-		Facility fa4 = c.addFacility("fa4", null);
-		Facility fa5 = c.addFacility("fa5", null);
-		Facility fa6 = c.addFacility("fa6", null);
-		Facility fa7 = c.addFacility("fa7", null);
-		System.out.println("show all:");
-		c.ShowFacilities();
-		for(Facility fa:c.GetFaclilitys()) {
-			System.out.println(fa.getName());
+		//Date
+		String DatePath = "C:\\Users\\11351\\Desktop\\Date.txt";
+		File F = new File(DatePath);
+		Scanner sc = new Scanner(F);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d-MMM-yyyy H:mm");
+		ArrayList<LocalDateTime> startDa = new ArrayList<>();
+		ArrayList<LocalDateTime> endDa = new ArrayList<>();
+		for(int i = 0;i<2;i++) {
+			LocalDateTime da = LocalDateTime.parse(sc.nextLine(), dtf);
+			startDa.add(da);
+			da = LocalDateTime.parse(sc.nextLine(), dtf);
+			endDa.add(da);
 		}
-		System.out.println("remove fa7 fa4:");
-		c.removeFacility("fa7");
-		c.removeFacility("fa4");
-		System.out.println("获得fa3和fa4的name:");
-		c.GetFacility("fa3");
-		c.GetFacility("fa4");
-		System.out.println("show all:");
-		c.ShowFacilities();	
-		LocalDateTime da = LocalDateTime.now();
-		Booking bk = new Booking(mem, fa1, da);
+		//LocalDateTime startDa1 = LocalDateTime.parse(sc.nextLine(),dtf);
+		
+		for(LocalDateTime da : startDa ) {
+		System.out.println(da.toString());
+		}
+	
+		
+		for(LocalDateTime da : endDa ) {
+		System.out.println(da.toString());
+		}
+		
+		
+		Club yzh = new Club();
+		// add Facilities
+		for (int i = 1; i < 9; i++) {
+			yzh.addFacility("Room" + i, null);
+
+		}
+
+		// add Member
+		for (int i = 1; i < 9; i++) {
+			yzh.addMember("x" + i, "m" + i, "j" + i);
+		}
+		
+		//show members
+		yzh.showMems();
+		
+		//show facilities
+		System.out.println("show facilities:");
+		yzh.ShowFacilities();
+		yzh.ShowKEY();
+	   yzh.addBooking(1, "Room1", startDa.get(0), endDa.get(0));  
+	   yzh.addBooking(2, "Room2", startDa.get(1), endDa.get(1));
+	   yzh.getBooking("Room1", startDa.get(0), endDa.get(0));
+
 	}
 
 }
