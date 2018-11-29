@@ -8,11 +8,13 @@ public class Club {
 	private HashMap<Integer, Member> members = new HashMap<>();
 	private HashMap<String, Facility> facilities = new HashMap<>();
 	private BookingRegister BookingReg = new BookingRegister();
+	private ArrayList<Member> memberList = new ArrayList<>();
 
 	private static int curNumber = 0;
 
 	public Member addMember(String surname, String firstname, String secondname) {
 		Member mem = new Member(surname, firstname, secondname, ++curNumber);
+		memberList.add(mem);
 		members.put(curNumber, mem);
 		return mem;
 	}
@@ -90,5 +92,15 @@ public class Club {
 		for(String key : facilities.keySet()) {
 	        System.out.println(key);
 			}
+	}
+	
+	public void sortMemberList() {
+		memberList.sort(null);
+	}
+	
+	public void showList() {
+		for(Member m : memberList) {
+			System.out.println(m.getMemshipNum()+m.getFirstname());
+		}
 	}
 }

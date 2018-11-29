@@ -22,31 +22,29 @@ public class ClubApplication {
 		 * System.out.println("Name of 1st person:"); P1.Show();
 		 * System.out.println("Name of 2nd person:"); P2.Show(); 6666666666 666
 		 */
-		//Date
+		// Date
 		String DatePath = "C:\\Users\\11351\\Desktop\\Date.txt";
 		File F = new File(DatePath);
 		Scanner sc = new Scanner(F);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d-MMM-yyyy H:mm");
 		ArrayList<LocalDateTime> startDa = new ArrayList<>();
 		ArrayList<LocalDateTime> endDa = new ArrayList<>();
-		for(int i = 0;i<2;i++) {
+		for (int i = 0; i < 2; i++) {
 			LocalDateTime da = LocalDateTime.parse(sc.nextLine(), dtf);
 			startDa.add(da);
 			da = LocalDateTime.parse(sc.nextLine(), dtf);
 			endDa.add(da);
 		}
-		//LocalDateTime startDa1 = LocalDateTime.parse(sc.nextLine(),dtf);
-		
-		for(LocalDateTime da : startDa ) {
-		System.out.println(da.toString());
+		// LocalDateTime startDa1 = LocalDateTime.parse(sc.nextLine(),dtf);
+
+		for (LocalDateTime da : startDa) {
+			System.out.println(da.toString());
 		}
-	
-		
-		for(LocalDateTime da : endDa ) {
-		System.out.println(da.toString());
+
+		for (LocalDateTime da : endDa) {
+			System.out.println(da.toString());
 		}
-		
-		
+
 		Club yzh = new Club();
 		// add Facilities
 		for (int i = 1; i < 9; i++) {
@@ -58,17 +56,21 @@ public class ClubApplication {
 		for (int i = 1; i < 9; i++) {
 			yzh.addMember("x" + i, "m" + i, "j" + i);
 		}
-		
-		//show members
+
+		// show members
 		yzh.showMems();
-		
-		//show facilities
+
+		// show facilities
 		System.out.println("show facilities:");
 		yzh.ShowFacilities();
 		yzh.ShowKEY();
-	   yzh.addBooking(1, "Room1", startDa.get(0), endDa.get(0));  
-	   yzh.addBooking(2, "Room2", startDa.get(1), endDa.get(1));
-	   yzh.getBooking("Room1", startDa.get(0), endDa.get(0));
+		yzh.addBooking(1, "Room1", startDa.get(0), endDa.get(0));
+		yzh.addBooking(2, "Room2", startDa.get(1), endDa.get(1));
+		yzh.getBooking("Room1", startDa.get(0), endDa.get(0));
+
+		//sort
+		yzh.sortMemberList();
+		yzh.showList();
 
 	}
 

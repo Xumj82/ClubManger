@@ -1,5 +1,5 @@
 
-public class Member extends Person{
+public class Member extends Person implements MemberComparable{
 
 	public Member(String surname, String firstname) {
 		super(surname, firstname);
@@ -36,4 +36,21 @@ public class Member extends Person{
 		String name = super.toString() + " "+this.memshipNum;
 		return name;
 	}
+
+	@Override
+	public int compareTo(Member o) {
+		// TODO Auto-generated method stub
+		if(o.memshipNum>this.memshipNum) {
+			return -1;
+		}
+		else if(o.memshipNum<this.memshipNum) {
+			return 1;
+		}
+		else
+			return 0;
+	}
+
+
+
+
 }
