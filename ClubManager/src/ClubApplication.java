@@ -50,7 +50,7 @@ public class ClubApplication {
 		Club yzh = new Club();
 		// add Facilities
 		for (int i = 1; i < 9; i++) {
-			yzh.addFacility("Room" + i, null);
+			yzh.addFacility("Room" + i, "888");
 
 		}
 
