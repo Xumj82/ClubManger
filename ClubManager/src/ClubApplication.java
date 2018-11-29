@@ -15,7 +15,7 @@ public class ClubApplication {
 		 * System.out.println("Name of 1st person:"); P1.Show();
 		 * System.out.println("Name of 2nd person:"); P2.Show();
 		 * 6666666666
-		 * 666
+		 * 666bendaye
 		 */
 		Club c = new Club();
 		Member mem = c.addMember("Zhang", "Wei", "Tom");
