@@ -20,7 +20,8 @@ public class ClubApplication {
 		 * System.out.println("This is ClubApp..."); Member P1 = new
 		 * Member("Zhang","Wei","Tom",123); Person P2 = new Member("Zhang","Wei",123);
 		 * System.out.println("Name of 1st person:"); P1.Show();
-		 * System.out.println("Name of 2nd person:"); P2.Show(); 6666666666 666
+		 * System.out.println("Name of 2nd person:"); P2.Show();
+		 * here is the testVer.
 		 */
 		// Date
 		String DatePath = "C:\\Users\\11351\\Desktop\\Date.txt";
