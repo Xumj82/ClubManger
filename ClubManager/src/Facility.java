@@ -30,7 +30,7 @@ public class Facility {
 	}
 
 	public String toString() {
-	    String name = this.name + this.description;
+	    String name = this.name +" "+ this.description;
 	    return name;
 	}
 	

@@ -11,7 +11,7 @@ public class Person {
 	//@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		String name = this.surname + this.firstname + this.secondname;
+		String name = this.surname +" "+ this.firstname +" "+ this.secondname;
 		return name;
 	}
 	

@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 public class BookingRegister {
 
-	private HashMap<Facility, ArrayList<Booking>> BR;
+	private HashMap<Facility, ArrayList<Booking>> BR = new HashMap<>();
 	
 
 	public BookingRegister() {
 		
 	}
 
-	public void addBooking(Member mem,Facility fa,LocalDateTime startDa,LocalDateTime endDa) throws BadBookingException{
+	public void addBooking(Member mem,Facility fa,LocalDateTime startDa,LocalDateTime endDa) throws BadBookingException {
 		Booking bk = new Booking(mem, fa, startDa, endDa);
 		if(BR.containsKey(fa)){
 			for(Booking b : BR.get(fa) ) {

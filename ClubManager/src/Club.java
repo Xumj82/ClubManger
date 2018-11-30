@@ -1,51 +1,49 @@
-import java.awt.List;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
-
-import javax.print.attribute.HashPrintJobAttributeSet;
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 public class Club {
 
-	private int curNumber;
+	private HashMap<Integer, Member> members = new HashMap<>();
+	private HashMap<String, Facility> facilities = new HashMap<>();
+	private BookingRegister BookingReg = new BookingRegister();
+	private ArrayList<Member> memberList = new ArrayList<>();
 
-	Stack<Member> members = new Stack<Member>();
-	HashMap<String, Facility> fac = new HashMap<>();
-
-	static int i = 1;
+	private static int curNumber = 0;
 
 	public Member addMember(String surname, String firstname, String secondname) {
-		Member mem = new Member(surname, firstname, secondname, i++);
-		members.push(mem);
-		return members.peek();
+		Member mem = new Member(surname, firstname, secondname, ++curNumber);
+		memberList.add(mem);
+		members.put(curNumber, mem);
+		return mem;
 	}
 
-	public void removeMember() {
-		members.pop();
+	public void removeMember(int memberID) {
+		members.remove(memberID);
+		System.out.println("remove last member");
 	}
 
 	public void showMems() {
-		for (Member x : members) {
+		System.out.println("show all:");
+		for (Member x : members.values()) {
 			x.Show();
 		}
 	}
 
 	public Facility addFacility(String name, String Des) {
 		Facility fa = new Facility(name, Des);
-		fac.put(name, fa);
+		facilities.put(name, fa);
 		return fa;
 	}
 
 	public Facility GetFacility(String name) {
-        	return fac.get(name);	
+		return facilities.get(name);
 	}
 
 	public ArrayList<Facility> GetFaclilitys() {
 		ArrayList<Facility> fas = new ArrayList<>();
-		java.util.Iterator<Facility> ite = fac.values().iterator();
+		java.util.Iterator<Facility> ite = facilities.values().iterator();
 		while (ite.hasNext()) {
 			fas.add(ite.next());
 		}
@@ -53,8 +51,8 @@ public class Club {
 	}
 
 	public void removeFacility(String name) {
-		if (!fac.isEmpty()) {
-			fac.remove(this.GetFacility(name).getName());
+		if (!facilities.isEmpty()) {
+			facilities.remove(this.GetFacility(name).getName());
 			System.out.println(name + " removed");
 		} else {
 			System.out.println("connot find the facility");
@@ -64,6 +62,45 @@ public class Club {
 	public void ShowFacilities() {
 		for (Facility fa : this.GetFaclilitys()) {
 			System.out.println(fa);
+		}
+	}
+
+	public void addBooking(int memNum, String Fac, LocalDateTime startDa, LocalDateTime endDa) throws BadBookingException{
+		if (members.containsKey(memNum) && facilities.containsKey(Fac)) {
+			BookingReg.addBooking(members.get(memNum), facilities.get(Fac), startDa, endDa);
+			System.out.println("addBooking Done");
+		} else {
+			throw new BadBookingException("wrong num or facility name");
+		}
+	}
+
+	public void getBooking(String facName, LocalDateTime startDa, LocalDateTime endDa) {
+		if (facilities.containsKey(facName)) {
+			for (Booking bk : BookingReg.getBooking(this.GetFacility(facName), startDa, endDa)) {
+				System.out.println(bk.toString());
+			}
+		} else {
+			System.out.println("booking not found");
+		}
+	}
+	
+	public void ShowKEY() {
+		for(int key : members.keySet()) {
+        System.out.println(key);
+		}
+		
+		for(String key : facilities.keySet()) {
+	        System.out.println(key);
+			}
+	}
+	
+	public void sortMemberList() {
+		memberList.sort(null);
+	}
+	
+	public void showList() {
+		for(Member m : memberList) {
+			System.out.println(m.getMemshipNum()+m.getFirstname());
 		}
 	}
 }
