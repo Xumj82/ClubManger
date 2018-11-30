@@ -63,12 +63,19 @@ public class ClubApplication {
 		// show facilities
 		System.out.println("show facilities:");
 		yzh.ShowFacilities();
+		
+		// show key
+		System.out.println("showkey:");
 		yzh.ShowKEY();
+		
+		// add booking
+		System.out.println("add booking");
 		yzh.addBooking(1, "Room1", startDa.get(0), endDa.get(0));
 		yzh.addBooking(2, "Room2", startDa.get(1), endDa.get(1));
 		yzh.getBooking("Room1", startDa.get(0), endDa.get(0));
 
-		//sort
+		// sort
+		System.out.println("sort:");
 		yzh.sortMemberList();
 		yzh.showList();
 

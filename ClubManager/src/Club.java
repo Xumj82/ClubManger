@@ -1,7 +1,6 @@
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Club {
 
@@ -65,7 +64,8 @@ public class Club {
 		}
 	}
 
-	public void addBooking(int memNum, String Fac, LocalDateTime startDa, LocalDateTime endDa) throws BadBookingException{
+	public void addBooking(int memNum, String Fac, LocalDateTime startDa, LocalDateTime endDa)
+			throws BadBookingException {
 		if (members.containsKey(memNum) && facilities.containsKey(Fac)) {
 			BookingReg.addBooking(members.get(memNum), facilities.get(Fac), startDa, endDa);
 			System.out.println("addBooking Done");
@@ -83,24 +83,26 @@ public class Club {
 			System.out.println("booking not found");
 		}
 	}
-	
+
 	public void ShowKEY() {
-		for(int key : members.keySet()) {
-        System.out.println(key);
+		Iterator<Integer> iteM = members.keySet().iterator();
+		Iterator<String> iteF = facilities.keySet().iterator();
+
+		while (iteM.hasNext()) {
+			System.out.println(iteM.next());
 		}
-		
-		for(String key : facilities.keySet()) {
-	        System.out.println(key);
-			}
+		while (iteF.hasNext()) {
+			System.out.println(iteF.next());
+		}
 	}
-	
+
 	public void sortMemberList() {
 		memberList.sort(null);
 	}
-	
+
 	public void showList() {
-		for(Member m : memberList) {
-			System.out.println(m.getMemshipNum()+m.getFirstname());
+		for (Member m : memberList) {
+			System.out.println(m.getMemshipNum() + m.getFirstname());
 		}
 	}
 }
